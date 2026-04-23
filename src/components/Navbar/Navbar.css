@@ -1,0 +1,213 @@
+/* ── Navbar base ── */
+.navbar {
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.navbar:hover {
+  box-shadow: 0 4px 20px rgba(73, 85, 126, 0.08);
+}
+
+/* ── Logo ── */
+.logo {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.12) rotate(-4deg);
+  opacity: 0.9;
+}
+
+/* ── Nav links ── */
+.navbar-option a {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.25s ease;
+  padding-bottom: 4px;
+}
+
+/* Animated underline on hover */
+.navbar-option a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #49557e;
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.navbar-option a:hover::after {
+  width: 100%;
+}
+
+.navbar-option a:hover {
+  color: #2c3660;
+}
+
+/* Active state */
+.active {
+  padding-bottom: 2px;
+  border-bottom: 2px solid #49557e;
+  font-weight: 600;
+}
+
+.active::after {
+  display: none; /* Don't double up on active */
+}
+
+ul li {
+  cursor: pointer;
+}
+
+/* ── Search & basket icons ── */
+.navbar-right img:first-child {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+}
+
+.navbar-right img:first-child:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.navbar-search-icon img {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.navbar-search-icon img:hover {
+  transform: scale(1.18) rotate(5deg);
+}
+
+/* Cart dot pulse */
+.dot {
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+/* ── Sign-in button ── */
+.sign-in {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              filter 0.25s ease;
+  animation: fadeInRight 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.sign-in:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(252, 129, 110, 0.35);
+  filter: brightness(1.05);
+}
+
+.sign-in:active {
+  transform: scale(0.97);
+}
+
+/* ── Profile icon ── */
+.navbar-profile {
+  position: relative;
+}
+
+.navbar-profile > img {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.navbar-profile:hover > img {
+  transform: scale(1.15);
+}
+
+/* ── Dropdown ── */
+.nav-profile-dropdown {
+  position: absolute;
+  width: 600%;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff2ef;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: 1px solid tomato;
+  outline: 2px solid white;
+  list-style: none;
+
+  /* Hidden by default — animated */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px) scale(0.97);
+  transform-origin: top right;
+  transition: opacity 0.25s ease,
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.navbar-profile:hover .nav-profile-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0) scale(1);
+}
+
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: gap 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  border-radius: 4px;
+}
+
+.nav-profile-dropdown li:hover {
+  gap: 14px;
+  color: tomato;
+  transform: translateX(3px);
+}
+
+.nav-profile-dropdown li img {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-profile-dropdown li:hover img {
+  transform: scale(1.15) rotate(-6deg);
+}
+
+/* ── Keyframes ── */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 99, 71, 0.5);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 5px rgba(255, 99, 71, 0);
+  }
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 825px) {
+  .navbar ul {
+    display: none;
+  }
+}

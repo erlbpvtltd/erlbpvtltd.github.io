@@ -1,0 +1,159 @@
+/* ── Section ── */
+.explore-menu {
+  overflow: hidden;
+}
+
+.explore-menu h1 {
+  font-size: max(2vw, 30px);
+  animation: fadeSlideUp 0.5s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.explore-menu-text {
+  animation: fadeSlideUp 0.5s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Menu list ── */
+.explore-menu-list {
+  animation: fadeSlideUp 0.5s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Each item ── */
+.explore-menu-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.explore-menu-list-item:hover {
+  transform: translateY(-6px) scale(1.06);
+}
+
+/* ── Category image ── */
+.explore-menu-list-item img {
+  width: 7.5vw;
+  min-width: 60px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  padding: 2px;
+  transition: border-color 0.25s ease,
+              box-shadow 0.3s ease,
+              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.25s ease;
+  cursor: pointer;
+}
+
+.explore-menu-list-item img:hover {
+  box-shadow: 0 6px 20px rgba(255, 99, 71, 0.25);
+  filter: brightness(1.06);
+}
+
+/* Active state */
+.explore-menu-list-item .active {
+  border: 4px solid tomato;
+  padding: 2px;
+  border-radius: 100%;
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.2);
+  animation: activePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Label */
+.explore-menu-list-item p {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.explore-menu-list-item:hover p {
+  color: tomato !important;
+  transform: scale(1.05);
+}
+
+.explore-menu-list-item .active + p,
+.explore-menu-list-item:has(.active) p {
+  color: tomato !important;
+}
+
+/* ── HR ── */
+.explore-menu hr {
+  animation: expandLine 0.7s 0.4s ease forwards;
+  width: 0%;
+  border: none;
+  border-top: 2px solid #e5e5e5;
+}
+
+/* ── Stagger each menu item ── */
+.explore-menu-list-item:nth-child(1)  { animation: fadeSlideUp 0.4s 0.28s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(2)  { animation: fadeSlideUp 0.4s 0.33s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(3)  { animation: fadeSlideUp 0.4s 0.38s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(4)  { animation: fadeSlideUp 0.4s 0.43s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(5)  { animation: fadeSlideUp 0.4s 0.48s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(6)  { animation: fadeSlideUp 0.4s 0.53s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(7)  { animation: fadeSlideUp 0.4s 0.58s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(8)  { animation: fadeSlideUp 0.4s 0.63s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(9)  { animation: fadeSlideUp 0.4s 0.68s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(10) { animation: fadeSlideUp 0.4s 0.73s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(11) { animation: fadeSlideUp 0.4s 0.78s cubic-bezier(0.16,1,0.3,1) both; }
+.explore-menu-list-item:nth-child(12) { animation: fadeSlideUp 0.4s 0.83s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* ── Keyframes ── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes activePop {
+  from { transform: scale(0.85); }
+  to   { transform: scale(1); }
+}
+
+@keyframes expandLine {
+  to { width: 100%; }
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 1030px) {
+  .explore-menu-text {
+    min-width: 100%;
+    font-size: 19px;
+  }
+
+  .explore-menu-list img {
+    width: 121%;
+  }
+
+  .explore-menu-list p {
+    font-size: 17px;
+  }
+
+  .explore-menu-list {
+    overflow-x: scroll;
+    width: 100%;
+  }
+
+  .explore-menu-list-item {
+    min-width: 20%;
+  }
+
+  .scroll-content::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  .scroll-content::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .scroll-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  .scroll-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}

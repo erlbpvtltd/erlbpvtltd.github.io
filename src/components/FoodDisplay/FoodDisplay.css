@@ -1,0 +1,68 @@
+.food-display-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  margin-top: 30px;
+  gap: 30px;
+  row-gap: 50px;
+}
+
+/* Stagger each card using nth-child — cycles through 12 slots */
+.food-display-list > *:nth-child(1)  { animation-delay: 0.05s; }
+.food-display-list > *:nth-child(2)  { animation-delay: 0.10s; }
+.food-display-list > *:nth-child(3)  { animation-delay: 0.15s; }
+.food-display-list > *:nth-child(4)  { animation-delay: 0.20s; }
+.food-display-list > *:nth-child(5)  { animation-delay: 0.25s; }
+.food-display-list > *:nth-child(6)  { animation-delay: 0.30s; }
+.food-display-list > *:nth-child(7)  { animation-delay: 0.35s; }
+.food-display-list > *:nth-child(8)  { animation-delay: 0.40s; }
+.food-display-list > *:nth-child(9)  { animation-delay: 0.45s; }
+.food-display-list > *:nth-child(10) { animation-delay: 0.50s; }
+.food-display-list > *:nth-child(11) { animation-delay: 0.55s; }
+.food-display-list > *:nth-child(12) { animation-delay: 0.60s; }
+
+/* ── Section heading ── */
+.food-display-heading {
+  font-weight: bold;
+  font-size: 23px;
+  position: relative;
+  display: inline-block;
+  animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Animated accent underline */
+.food-display-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, chocolate, #e07b39aa);
+  border-radius: 3px;
+  animation: expandLine 0.6s 0.3s ease forwards;
+}
+
+/* ── Category switch: fade-out → fade-in ── */
+.food-display-list.switching {
+  animation: gridFade 0.35s ease both;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandLine {
+  to { width: 100%; }
+}
+
+@keyframes gridFade {
+  0%   { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

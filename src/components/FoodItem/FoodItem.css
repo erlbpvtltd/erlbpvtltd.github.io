@@ -1,0 +1,173 @@
+.food-item {
+  width: 100%;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px #00000015;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+  animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  overflow: hidden;
+  background: #fff;
+}
+
+.food-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0px 16px 40px #00000022;
+}
+
+/* ── Image container ── */
+.food-item-img-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+}
+
+.food-item-img {
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.food-item:hover .food-item-img {
+  transform: scale(1.07);
+}
+
+/* ── Add button ── */
+.add {
+  position: absolute;
+  width: 15%;
+  bottom: 5%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.add:hover {
+  transform: scale(1.2) rotate(8deg);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+}
+
+.add:active {
+  transform: scale(0.9);
+}
+
+/* ── Counter ── */
+.food-item-counter {
+  display: flex;
+  position: absolute;
+  width: 40%;
+  bottom: 5%;
+  right: 5%;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.food-item-counter img {
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.food-item-counter img:hover {
+  transform: scale(1.3);
+}
+
+.food-item-counter img:active {
+  transform: scale(0.85);
+}
+
+.food-item-counter p {
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-width: 1.2em;
+  text-align: center;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Info section ── */
+.food-item-info {
+  padding: 20px;
+}
+
+.food-item-name-rating {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.food-item-name-rating p {
+  font-size: 20px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.food-item:hover .food-item-name-rating p {
+  color: chocolate;
+}
+
+.food-item-name-rating img {
+  width: 35%;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.food-item:hover .food-item-name-rating img {
+  transform: scale(1.05);
+}
+
+.food-item-desc {
+  font-size: 15px;
+  color: grey;
+  margin-bottom: 10px;
+  transition: color 0.2s ease;
+}
+
+.food-item-price {
+  font-size: 23px;
+  color: chocolate;
+  font-weight: 600;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+}
+
+.food-item:hover .food-item-price {
+  transform: scale(1.06);
+}
+
+/* ── Keyframes ── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Count bump — triggered via JS ref */
+.count-bump {
+  animation: countBump 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes countBump {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.6); color: chocolate; }
+  100% { transform: scale(1); }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
