@@ -48,7 +48,7 @@ const MyOrders = () => {
                                     return item.name + ' X ' + item.quantity + " , "
                                 }
                             })}</p>
-                            <p>${orders.amount}</p>
+                            <p>₹{orders.amount}</p>
                             <p>Items: {orders.items.length}</p>
                             <p><span>&#x25cf;&ensp;</span><b>{orders.status}</b></p>
                             <p><b>Payment Status</b>:&ensp;{pay(orders.payment)}</p>

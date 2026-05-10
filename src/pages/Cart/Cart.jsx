@@ -31,9 +31,9 @@ const Cart = () => {
                 <div className='cart-items-title cart-items-item'>
                   <img src={url+'/images/'+item.image} alt="" />
                   <p>{item.name}</p>
-                  <p>${item.price}</p>
+                  <p>₹{item.price}</p>
                   <p>{cartItem[item._id]}</p>
-                  <p>${item.price * cartItem[item._id]}</p>
+                  <p>₹{item.price * cartItem[item._id]}</p>
                   <p onClick={() => { removeFromCart(item._id) }} className='cross'>X</p>
                 </div>
                 <hr />
@@ -47,15 +47,15 @@ const Cart = () => {
             <div>
               <div className='cart-total-details'>
                 <p>Subtotal</p>
-                <p>${getTotalAmount()}</p>
+                <p>₹{getTotalAmount()}</p>
               </div>
               <div className='cart-total-details'>
                 <p>Delivery fee</p>
-                <p>${getTotalAmount()==="0.00"?0:2.23}</p>
+                <p>₹{getTotalAmount()==="0.00"?0:50}</p>
               </div>
               <div className='cart-total-details'>
                 <strong>Total</strong>
-                <p>${getTotalAmount()==="0.00"?0:parseFloat(getTotalAmount())+2.23}</p>
+                <p>₹{getTotalAmount()==="0.00"?0:parseFloat(getTotalAmount())+50}</p>
               </div>
             </div>
             {/* we have add /order because in app.jsx we have define the /order to navigate to placeorder page*/}
