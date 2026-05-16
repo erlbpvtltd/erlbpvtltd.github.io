@@ -3,6 +3,7 @@ import { StoreContext } from '../../context/StoreContext'
 import './PlaceOrder.css'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
 
@@ -35,6 +36,11 @@ const PlaceOrder = () => {
     setData({...data, [event.target.name]: event.target.value })
   }
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+
   const placeOrder = async (event) => {
     event.preventDefault();
     let orderItems = [];
@@ -48,12 +54,13 @@ const PlaceOrder = () => {
     let orderData = {
       address: data,
       items: orderItems,
-      amount: parseFloat(getTotalAmount())+50,
+      amount: parseFloat(getTotalAmount())+2.23,
     }
     let response = await axios.post(`${url}/api/order/place`, orderData, {headers: {token}})
-    if(response.data.success){  
-      const {session_url} = response.data;
-      window.location.replace(session_url);
+    if(response.data.success){
+      toast.success(response.data.message)
+      await sleep(4000);
+      navigate("/myorders");
     }else{
       alert('Failed to place order. Please try again.')
     }
@@ -87,15 +94,15 @@ const PlaceOrder = () => {
             <div>
               <div className='cart-total-details'>
                 <p>Subtotal</p>
-                <p>₹{getTotalAmount()}</p>
+                <p>${getTotalAmount()}</p>
               </div>
               <div className='cart-total-details'>
                 <p>Delivery fee</p>
-                <p>₹{getTotalAmount()==="0.00"?0:50}</p>
+                <p>${getTotalAmount()==="0.00"?0:2.23}</p>
               </div>
               <div className='cart-total-details'>
                 <strong>Total</strong>
-                <p>₹{getTotalAmount()==="0.00"?0:parseFloat(getTotalAmount())+50}</p>
+                <p>${getTotalAmount()==="0.00"?0:parseFloat(getTotalAmount())+2.23}</p>
               </div>
             </div>
             <button type='submit' className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">PROCEED TO PAYMENT</button>
