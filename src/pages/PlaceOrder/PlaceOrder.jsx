@@ -94,15 +94,15 @@ const PlaceOrder = () => {
             <div>
               <div className='cart-total-details'>
                 <p>Subtotal</p>
-                <p>${getTotalAmount()}</p>
+                <p>₹{getTotalAmount()}</p>
               </div>
               <div className='cart-total-details'>
                 <p>Delivery fee</p>
-                <p>${getTotalAmount()==="0.00"?0:2.23}</p>
+                <p>₹{getTotalAmount()==="0.00"?0:2.23}</p>
               </div>
               <div className='cart-total-details'>
                 <strong>Total</strong>
-                <p>${getTotalAmount()==="0.00"?0:parseFloat(getTotalAmount())+2.23}</p>
+                <p>₹{getTotalAmount()==="0.00"?0:parseFloat(getTotalAmount())+2.23}</p>
               </div>
             </div>
             <button type='submit' className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">PROCEED TO PAYMENT</button>
