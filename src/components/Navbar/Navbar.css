@@ -112,7 +112,7 @@ ul li {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.navbar-profile:hover > img {
+.navbar-profile > img:hover {
   transform: scale(1.15);
 }
 
@@ -132,7 +132,7 @@ ul li {
   outline: 2px solid white;
   list-style: none;
 
-  /* Hidden by default — animated */
+  /* Hidden by default */
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px) scale(0.97);
@@ -141,10 +141,20 @@ ul li {
               transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.navbar-profile:hover .nav-profile-dropdown {
+/* Shown via JS class — works on both desktop and mobile */
+.nav-profile-dropdown.dropdown-open {
   opacity: 1;
   pointer-events: all;
   transform: translateY(0) scale(1);
+}
+
+/* Keep hover working on desktop too (non-touch devices) */
+@media (hover: hover) and (pointer: fine) {
+  .navbar-profile:hover .nav-profile-dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .nav-profile-dropdown li {
@@ -209,5 +219,10 @@ ul li {
 @media screen and (max-width: 825px) {
   .navbar ul {
     display: none;
+  }
+
+  /* Override the above hide-all rule just for the dropdown */
+  .navbar-profile .nav-profile-dropdown {
+    display: flex;
   }
 }
