@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
 import {Link, useNavigate} from 'react-router-dom'
@@ -7,14 +7,32 @@ import { StoreContext } from '../../context/StoreContext'
 const Navbar = ({setshowLogin}) => {
 
   const [menu, setMenu] = useState("home")
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const profileRef = useRef(null)
 
   const navigate = useNavigate();
 
   const {getTotalAmount, token, setToken} = useContext(StoreContext)
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('touchstart', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [])
+
   const LogOut = () => {
     setToken("")
     localStorage.removeItem('token')
+    setDropdownOpen(false)
     navigate('/')
   }
 
@@ -33,7 +51,7 @@ const Navbar = ({setshowLogin}) => {
         <img src={assets.logo} alt="logo" className='logo w-[50px]' />
       </Link>
 
-      {/* Nav Links — each item gets a staggered fade-in via inline style */}
+      {/* Nav Links */}
       <ul className="navbar-option flex justify-center items-center gap-[20px] text-[18px] text-[#49557e]">
         {navItems.map(({ label, href, type, target }, i) =>
           type === "link" ? (
@@ -87,10 +105,17 @@ const Navbar = ({setshowLogin}) => {
             Sign in
           </button>
         ) : (
-          <div className='navbar-profile cursor-pointer'>
-            <img src={assets.profile_icon} alt="profile" />
-            <ul className='nav-profile-dropdown'>
-              <li onClick={() => navigate("/myorders")}>
+          <div
+            className='navbar-profile cursor-pointer'
+            ref={profileRef}
+          >
+            <img
+              src={assets.profile_icon}
+              alt="profile"
+              onClick={() => setDropdownOpen(prev => !prev)}
+            />
+            <ul className={`nav-profile-dropdown${dropdownOpen ? ' dropdown-open' : ''}`}>
+              <li onClick={() => { navigate("/myorders"); setDropdownOpen(false) }}>
                 <img src={assets.bag_icon} alt="orders" />
                 <p>Orders</p>
               </li>
